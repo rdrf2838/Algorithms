@@ -1,0 +1,14 @@
+{
+    "git.ignoreLimitWarning": true,
+    "restructuredtext.pythonRecommendation.disabled": true,
+    "restructuredtext.syntaxHighlighting.disabled": true,
+    "C_Cpp.default.compilerArgs": [
+        "-DHELLO_WORLD"
+    ],
+    "files.associations": {
+        "child1": "csv",
+        "child2": "csv",
+        "ownself": "csv",
+        "python.h": "c"
+    }
+}

@@ -1,0 +1,80 @@
+⊑
+∨
+∧
+⇒
+
+Question 1
+
+{X=x ∧ x∈α ∧ list(Y,α)}
+I:=0; Z:=Y; S:=0;
+{plist(Y,α,Z) * Z↦z,t * list(t,β) ∧ α[I]=z ∧ (S≠0⇒α[I]=x) ∧ x∈z::β ∧ X=x}
+while S=0 do
+    {plist(Y,α,Z) * Z↦z,t * list(t,β) ∧ α[I]=z ∧ (S≠0⇒α[I]=x) ∧ x∈z::β ∧ X=x ∧ S=0}
+    E:=[Z];
+    {plist(Y,α,Z) * Z↦z,t * list(t,β) ∧ α[I]=z ∧ (S≠0⇒α[I]=x) ∧ x∈z::β ∧ X=x ∧ S=0 ∧ E=z}
+    if E=X then
+        {plist(Y,α,Z) * Z↦z,t * list(t,β) ∧ α[I]=z ∧ (S≠0⇒α[I]=x) ∧ x∈z::β ∧ X=x ∧ S=0 ∧ E=z ∧ E=X}
+        {plist(Y,α,Z) * Z↦z,t * list(t,β) ∧ α[I]=x ∧ (S≠0⇒α[I]=x) ∧ x∈z::β ∧ X=x ∧ S=0}
+        S:=1;
+        {plist(Y,α,Z) * Z↦z,t * list(t,β) ∧ α[I]=x ∧ (S≠0⇒α[I]=x) ∧ x∈z::β ∧ X=x ∧ S=1}
+        {plist(Y,α,Z) * Z↦z,t * list(t,β) ∧ α[I]=z ∧ (S≠0⇒α[I]=x) ∧ x∈z::β ∧ X=x}
+    else
+        {plist(Y,α,Z) * Z↦z,t * list(t,β) ∧ α[I]=z ∧ (S≠0⇒α[I]=x) ∧ x∈z::β ∧ X=x ∧ S=0 ∧ E=z ∧ E≠X}
+        {plist(Y,α,k) * k↦z,t * list(t,β) ∧ α[I]=z ∧ (S≠0⇒α[I]=x) ∧ x∈β ∧ X=x ∧ S=0 ∧ Z=k}
+        Z:=[Z+1];
+        {plist(Y,α,k) * k↦z,t * list(t,β) ∧ α[I]=z ∧ (S≠0⇒α[I]=x) ∧ x∈β ∧ X=x ∧ S=0 ∧ Z=t}
+        {plist(Y,α++[z],Z) * list(Z,β) ∧ α[I]=z ∧ (S≠0⇒α[I]=x) ∧ x∈β ∧ X=x ∧ S=0}
+        {plist(Y,α++[z],Z) * Z↦z2,t2 * list(t2,β2) ∧ α[I+1]=z2 ∧ (S≠0⇒α[I+1]=x) ∧ x∈z2::β2 ∧ X=x ∧ S=0}
+        I:=I+1;
+        {plist(Y,α++[z],Z) * Z↦z2,t2 * list(t2,β2) ∧ α[I]=z2 ∧ (S≠0⇒α[I]=x) ∧ x∈z2::β2 ∧ X=x ∧ S=0}
+        {plist(Y,α,Z) * Z↦z,t * list(t,β) ∧ α[I]=z ∧ (S≠0⇒α[I]=x) ∧ x∈z::β ∧ X=x}
+    {plist(Y,α,Z) * Z↦z,t * list(t,β) ∧ α[I]=z ∧ (S≠0⇒α[I]=x) ∧ x∈z::β ∧ X=x ∧ S≠0}
+    {plist(Y,α) ∧ α[I]=x}
+
+
+Exercise 44
+{list(X,α) * list(Y,β)}
+P:=X; Q:=Y; S:=1;
+{list(X,α) * list(Y,β) ^ P=X ^ Q=Y ^ S=1}
+{plist(X,γ,P) * list(P,δ) * plist(Y,ϵ,Q) * list(Q,ξ) ^ γ++δ=α ^ ϵ++ξ=β ^ (S=0⇒¬(α⊑β∨β⊑α)) ^ (S=1⇒γ=ϵ)}
+while S=1 and P≠null and Q≠null do
+    {plist(X,γ,P) * P↦h1,t1 * list(t1,δ) * plist(Y,ϵ,Q) * Q↦h2,t2 * list(t2,ξ) ^ γ++[h1]++δ=α ^ ϵ++[h2]++ξ=β ^ (S=0⇒¬(α⊑β∨β⊑α)) ^ (S=1⇒γ=ϵ) ^ S=1}
+    E:=[P]; F:=[Q];
+    {plist(X,γ,P) * P↦h1,t1 * list(t1,δ) * plist(Y,ϵ,Q) * Q↦h2,t2 * list(t2,ξ) ^ γ++[h1]++δ=α ^ ϵ++[h2]++ξ=β ^ (S=0⇒¬(α⊑β∨β⊑α)) ^ (S=1⇒γ=ϵ) ^ S=1 ^ E=h1 ^ F=h2}
+    if E=F then
+        {plist(X,γ,P) * P↦h1,t1 * list(t1,δ) * plist(Y,ϵ,Q) * Q↦h2,t2 * list(t2,ξ) ^ γ++[h1]++δ=α ^ ϵ++[h2]++ξ=β ^ (S=0⇒¬(α⊑β∨β⊑α)) ^ (S=1⇒γ=ϵ) ^ S=1 ^ E=h1 ^ F=h2 ^ E=F}
+        {plist(X,γ,P) * P↦h,t1 * list(t1,δ) * plist(Y,ϵ,Q) * Q↦h,t2 * list(t2,ξ) ^ γ++[h]++δ=α ^ ϵ++[h]++ξ=β ^ (S=0⇒¬(α⊑β∨β⊑α)) ^ (S=1⇒γ=ϵ) ^ S=1} 
+        {plist(X,γ,p) * p↦h,t1 * list(t1,δ) * plist(Y,ϵ,q) * q↦h,t2 * list(t2,ξ) ^ γ++[h]++δ=α ^ ϵ++[h]++ξ=β ^ (S=0⇒¬(α⊑β∨β⊑α)) ^ (S=1⇒γ=ϵ) ^ S=1 ^ P=p ^ Q=q} 
+        P:=[P+1]; Q:=[Q+1];
+        {plist(X,γ,p) * p↦h,P * list(P,δ) * plist(Y,ϵ,q) * q↦h,Q * list(Q,ξ) ^ γ++[h]++δ=α ^ ϵ++[h]++ξ=β ^ (S=0⇒¬(α⊑β∨β⊑α)) ^ (S=1⇒γ=ϵ) ^ S=1} 
+        {plist(X,γ,p) * p↦h,P * list(P,δ) * plist(Y,ϵ,q) * q↦h,Q * list(Q,ξ) ^ γ++[h]++δ=α ^ ϵ++[h]++ξ=β ^ (S=0⇒¬(α⊑β∨β⊑α)) ^ (S=1⇒γ++[h]=ϵ++[h]) ^ S=1} 
+        {plist(X,γ,P) * list(P,δ) * plist(Y,ϵ,Q) * list(Q,ξ) ^ γ++δ=α ^ ϵ++ξ=β ^ (S=0⇒¬(α⊑β∨β⊑α)) ^ (S=1⇒γ=ϵ)}
+    else
+        {plist(X,γ,P) * P↦h1,t1 * list(t1,δ) * plist(Y,ϵ,Q) * Q↦h2,t2 * list(t2,ξ) ^ γ++[h1]++δ=α ^ ϵ++[h2]++ξ=β ^ (S=0⇒¬(α⊑β∨β⊑α)) ^ (S=1⇒γ=ϵ) ^ S=1 ^ E=h1 ^ F=h2 ^ E≠F}
+        {plist(X,γ,P) * P↦h1,t1 * list(t1,δ) * plist(Y,ϵ,Q) * Q↦h2,t2 * list(t2,ξ) ^ γ++[h1]++δ=α ^ ϵ++[h2]++ξ=β ^ (0=0⇒¬(α⊑β∨β⊑α)) ^ (0=1⇒γ=ϵ) ^ S=1 ^ E=h1 ^ F=h2 ^ E≠F}
+        S:=0;
+        {plist(X,γ,P) * P↦h1,t1 * list(t1,δ) * plist(Y,ϵ,Q) * Q↦h2,t2 * list(t2,ξ) ^ γ++[h1]++δ=α ^ ϵ++[h2]++ξ=β ^ (S=0⇒¬(α⊑β∨β⊑α)) ^ (S=1⇒γ=ϵ) ^ S=0 ^ E=h1 ^ F=h2 ^ E≠F}
+        {plist(X,γ,P) * list(P,δ) * plist(Y,ϵ,Q) * list(Q,ξ) ^ γ++δ=α ^ ϵ++ξ=β ^ (S=0⇒¬(α⊑β∨β⊑α)) ^ (S=1⇒γ=ϵ)}
+    {plist(X,γ,P) * list(P,δ) * plist(Y,ϵ,Q) * list(Q,ξ) ^ γ++δ=α ^ ϵ++ξ=β ^ (S=0⇒¬(α⊑β∨β⊑α)) ^ (S=1⇒γ=ϵ) ^ S≠1 ∨ P=0 ∨ Q=0}
+
+
+ {P1 ^ B} C1 {Q1}      {P2 ^ ¬B} C2 {Q2}
+-----------------------------------------
+{P1 ^ P2} if B then C1 else C2 {Q1 \/ Q2}
+
+For the rule
+
+⊢{P1 ∧ B} C1 {Q1}    ⊢{P2 ∧ ¬B} C2 {Q2}
+----------------------------------------
+⊢{P1 ∧ P2} if B then C1 else C2 {Q1 ∧ Q2}
+
+Choosing P1 = P2 = ⊤, B = (Y≥0), C1 = (X:=0), C2 = (X:=1), Q1 = (X=0), Q2 = (X=1) allows us to derive ⊢{⊤} if Y≥0 then X:=0 else X:=1 {⊥}, but this is unsound as the program halts but s' ∉ [⊥] = ϕ. Did I make a mistake in my program?
+
+
+
+A X ϕ = ¬ (E X (¬ ϕ))
+A F ϕ = ¬ (E G (¬ ϕ))
+A G ϕ = ¬ (E F (¬ ϕ))
+A (ϕ U ψ) = ¬ E (???)
+
+let e ^ (α + β x)

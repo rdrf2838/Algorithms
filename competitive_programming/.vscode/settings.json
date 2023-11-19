@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "child1": "csv",
+        "child2": "csv",
+        "ownself": "csv",
+        "bit": "cpp",
+        "iostream": "cpp",
+        "unordered_map": "cpp",
+        "tuple": "cpp"
+    }
+}
